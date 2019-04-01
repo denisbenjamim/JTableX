@@ -6,6 +6,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 public class RowColumnEditorRendererModel {
+    
    private final HashMap<Integer, HashMap<Integer, AbstractCellEditorRendererTable>> rows = new HashMap();
 
    public void addEditorRendererForRowColumn(Integer row, Integer column, AbstractCellEditorRendererTable editorRenderer) {
