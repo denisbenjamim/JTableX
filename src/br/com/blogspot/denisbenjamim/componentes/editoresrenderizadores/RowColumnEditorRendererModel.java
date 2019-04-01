@@ -11,7 +11,7 @@ public class RowColumnEditorRendererModel {
 
    public void addEditorRendererForRowColumn(Integer row, Integer column, AbstractCellEditorRendererTable editorRenderer) {
       if (this.rows.containsKey(row)) {
-         ((HashMap)this.rows.get(row)).put(column, editorRenderer);
+         this.rows.get(row).put(column, editorRenderer);
       } else {
          HashMap<Integer, AbstractCellEditorRendererTable> editorsRenderers = new HashMap();
          editorsRenderers.put(column, editorRenderer);
@@ -21,26 +21,26 @@ public class RowColumnEditorRendererModel {
    }
 
    public void remEditorRendererForRowColumn(Integer row, Integer column) {
-      ((HashMap)this.rows.get(row)).remove(column);
-      if (((HashMap)this.rows.get(row)).isEmpty()) {
+      this.rows.get(row).remove(column);
+      if (this.rows.get(row).isEmpty()) {
          this.rows.remove(row);
       }
 
    }
 
    public AbstractCellEditorRendererTable getEditorRendererForRowColumn(Integer row, Integer column) {
-      return (AbstractCellEditorRendererTable)((HashMap)this.rows.get(row)).get(column);
+      return this.rows.get(row).get(column);
    }
 
    public TableCellRenderer getRendererForRowColumn(Integer row, Integer column) {
-      return ((AbstractCellEditorRendererTable)((HashMap)this.rows.get(row)).get(column)).getTableCellRenderer();
+      return this.rows.get(row).get(column).getTableCellRenderer();
    }
 
    public TableCellEditor getEditorForRowColumn(Integer row, Integer column) {
-      return ((AbstractCellEditorRendererTable)((HashMap)this.rows.get(row)).get(column)).getTableCellEditor();
+      return this.rows.get(row).get(column).getTableCellEditor();
    }
 
    public boolean containsEditorRendererForRowColumn(Integer row, Integer column) {
-      return this.rows.containsKey(row) ? ((HashMap)this.rows.get(row)).containsKey(column) : false;
+      return this.rows.containsKey(row) ? this.rows.get(row).containsKey(column) : false;
    }
 }
