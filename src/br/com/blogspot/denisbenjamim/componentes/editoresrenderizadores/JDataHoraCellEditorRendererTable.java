@@ -13,9 +13,9 @@ import javax.swing.JTable;
 /**
  *
  * @author Denis
- * @param <generics>
+ * 
  */
-public class JDataHoraCellEditorRendererTable<generics> extends AbstractCellEditorRendererTable implements PropertyChangeListener {
+public class JDataHoraCellEditorRendererTable extends AbstractCellEditorRendererTable implements PropertyChangeListener {
 
     private final JDataHora dataHora;
 
