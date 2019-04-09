@@ -19,6 +19,9 @@ public class RowColumnEditorRendererModel {
 
     }
 
+    public void remEditorRendererAll() {
+        this.rows.clear();
+    }
     public void remEditorRendererForRowColumn(Integer row, Integer column) {
         if (this.rows.containsKey(row)) {
             if (this.rows.get(row).containsKey(column)) {
