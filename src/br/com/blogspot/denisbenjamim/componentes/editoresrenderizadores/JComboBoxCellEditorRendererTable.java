@@ -1,8 +1,9 @@
 package br.com.blogspot.denisbenjamim.componentes.editoresrenderizadores;
 
 import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.Serializable;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -12,17 +13,18 @@ import javax.swing.JTable;
  * @author Denis
  * @param <generics>
  */
-public class JComboBoxCellEditorRendererTable<generics> extends AbstractCellEditorRendererTable implements PropertyChangeListener{
+public class JComboBoxCellEditorRendererTable<generics> extends AbstractCellEditorRendererTable implements ItemListener, Serializable{
 
     private final JComboBox<generics> comboBox;
 
     public JComboBoxCellEditorRendererTable() {
         this.comboBox = new JComboBox<>(); 
-        this.comboBox.addPropertyChangeListener(this);
+        this.comboBox.addItemListener(this);
     }
     public JComboBoxCellEditorRendererTable(ComboBoxModel<generics> modeloCombo) {
-        this.comboBox = new JComboBox<>(modeloCombo);   
-        this.comboBox.addPropertyChangeListener(this);
+        this.comboBox = new JComboBox<>(modeloCombo);  
+        this.comboBox.addItemListener(this);
+       
     }
     
     @Override
@@ -52,14 +54,9 @@ public class JComboBoxCellEditorRendererTable<generics> extends AbstractCellEdit
     }
 
     @Override
-    public JComboBoxCellEditorRendererTable clone() throws CloneNotSupportedException {
-        return (JComboBoxCellEditorRendererTable) super.clone();
+    public void itemStateChanged(ItemEvent e) {
+       if(e.getStateChange()==ItemEvent.SELECTED){          
+           fireEditingStopped();
+       }
     }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        fireEditingStopped();
-    }
-    
-    
 }
